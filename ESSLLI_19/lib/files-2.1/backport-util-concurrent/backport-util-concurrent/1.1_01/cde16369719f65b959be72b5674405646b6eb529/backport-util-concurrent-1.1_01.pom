@@ -1,0 +1,12 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>backport-util-concurrent</groupId>
+  <artifactId>backport-util-concurrent</artifactId>
+  <name>Backport JSR 166</name>
+  <version>1.1_01</version>
+  <inceptionYear>2004</inceptionYear>
+  <organization>
+    <name>Dawid Kurzyniec</name>
+    <url>http://www.mathcs.emory.edu/dcl/util/backport-util-concurrent/</url>
+  </organization>
+</project>

@@ -1,0 +1,62 @@
+Tutorial sources:
+https://sourceforge.net/p/inprotk/wiki/Setup/
+http://www.dsg-bielefeld.de/dsg_wp/intro-to-inprotk/
+
+Instructions for WINDOWS 10 (where different for LINUX/Mac, this is in square brackets)
+
+1. Download Java jdk and Eclipse.
+Download the Eclipse IDE from https://www.eclipse.org/downloads/
+Before/during this installation, you may need to install a Java JDK (1.8+) before you start downloading.
+Download eclipse installer (as the eclipse installer .exe file [different file for LINUX users, which is a zipped folder]), both available at:
+ 
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html (1.8)
+
+Unzip the installer if needed and run the executable .exe file by clicking on it [LINUX: just run ./eclipse-inst from inside the extracted installer directory downloaded from the Eclipse site] and follow the set-up.
+Choose a workspace/use default worksapce for Eclipse.
+
+2. Get the ASR tutorial code onto your machine.
+Download ASR.zip from the sciebo folder "09-11 Practical ASR" and extract it and put it somewhere easy to access, preferably your Eclipse workspace you created/pointed to in Step 1.
+
+3. Import the ASR project into Eclipse:
+a. Open up Eclipse, select File->Import->General->Existing Projects into Workspace, navigate to the directory that contains the extracted ASR folder and hit "Finish".
+In Eclipse, in your package explorer you should see the project 'ASR'.
+
+Make sure there are no errors (an error is denoted by red marks). 
+You can click on the "Problems" tab to see where the problems are. Make sure all the libraries are included in the project. 
+To do that, click on Project -> Properties -> Java Build Path -> Libraries -> (select jar files in the lib folder). Do ask for help if it hasn't built automatically.
+
+4. Try Sphinx ASR from the microphone:
+Go to src/app/asrAccuracySphinx.java
+Run -> Run As -> Java Application
+Try talking into your microphone and see what results come out from the console.
+
+5. Try Google ASR from the microphone:
+Go to src/app/asrAccuracyGoogle.java
+Run -> Run As -> Java Application
+Try talking into your microphone and see what results come out from the console.
+What are the differences between Google and Sphinx? Which has better output quality? Which is faster with results? 
+Is there anything in the type of results being given that is noticeably different?
+
+6. Try feeding files to Google ASR/and or Sphinx.
+For asrAccuracyGoogle.java, you can try to recognize from different files by changing the line 102 from:
+
+RecoCommandLineParser rclp = new RecoCommandLineParser(new String[] {"-M","-G", key5});
+
+to:
+
+            RecoCommandLineParser rclp = new RecoCommandLineParser(new String[] {"-F", "resources/SampleAudio/r1_101.wav","-G", key5});
+
+For Google you may need a new key as there are a limited number of queries possible from a given code in one day. You can change the key to key1, etc. as listed as variables in the file. The above code recognizes from the file "resources/SampleAudio/r1_101.wav" however you can point it at any file you like. You can listen to the files in the SampleAudio folder.
+
+If you want to test Sphinx, there is a similar line in asrAccuracySphinx.java file, see if you can do the same as the above, however the arguments should be simply {"-F", "resources/SampleAudio/r1_101.wav"} as no key or call to the Google option G is needed.
+
+The output from this recognition is set in src/module/ASRprinter.java in the variable String FileName near the top of the file. Currently this is set to "resources/SampleAudio/increco_output_r2_sphinx", but you can name the location you would like the output to be outputted to here instead. Both recognizers currently go through this module.
+
+7. Try to analyze the errors that are made by each system. Are these due to language model errors, acoustic model errors, or a combination of both? How do the systems handle disfluencies?
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+
+    <property name="wordInsertionProbability" value="0.7"/>
+    <property name="languageWeight" value="11.5"/>
+
+    <!-- ******************************************************** -->
+    <!-- The Grammar  configuration                               -->
+    <!-- ******************************************************** -->
+    <component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
+        <property name="dictionary" value="dictionary"/>
+        <property name="grammarLocation" value="file:src/inpro/domains/pentomino/resources/"/>
+        <property name="grammarName" value="pento"/>
+        <property name="logMath" value="logMath"/>
+    </component>
+    
+    
+    <!-- this second ngram model can be used to blend multiple language models using interpolatedLM defined in sphinx.xml -->
+    <component name="ngram" type="edu.cmu.sphinx.linguist.language.ngram.SimpleNGramModel">
+        <property name="dictionary" value="dictionary"/>
+        <property name="logMath" value="logMath"/>
+        <property name="location" value="resource:/cmu-english/english.lm"/>
+        <property name="maxDepth" value="3"/>
+        <property name="unigramWeight" value=".7"/>
+    </component>
+
+    <!-- ******************************************************** -->
+    <!-- The Dictionary configuration                            -->
+    <!-- ******************************************************** -->
+    <component name="dictionary" type="edu.cmu.sphinx.linguist.dictionary.TextDictionary"> 
+        <property name="dictionaryPath" value="resource:/cmu-english/english.dict"/>
+        <property name="fillerPath" value="resource:/cmu-english/filler.dict"/>
+       <property name="addSilEndingPronunciation" value="false"/>
+<!--         <property name="allowMissingWords" value="true"/> -->
+<!--         <property name="createMissingWords" value="true"/> -->
+<!--         <property name="g2pModelPath" value="file:///home/timo/uni/projekte/inpro-git/res/Cocolab_DE-g2p-4.fst.ser"/> -->
+<!--         <property name="g2pMaxPron" value="2"/> -->
+       <property name="unitManager" value="unitManager"/>
+    </component>
+    
+
+    <!-- ******************************************************** -->
+    <!-- The acoustic model and unit manager configuration        -->
+    <!-- ******************************************************** -->
+    <component name="sphinx3Loader" type="edu.cmu.sphinx.linguist.acoustic.tiedstate.Sphinx3Loader">
+        <property name="logMath" value="logMath"/>
+        <property name="unitManager" value="unitManager"/>
+		<property name="location" value="resource:/cmu-english/acoustic"/>
+    </component>
+

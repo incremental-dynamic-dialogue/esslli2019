@@ -1,0 +1,139 @@
+    <!-- ******************************************************** -->
+    <!-- The frontend configuration                               -->
+    <!-- ******************************************************** -->
+
+    <component name="endpointing" type="edu.cmu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+<!--            <item>sessionWavWriter</item> -->
+
+            <item>speechClassifier</item>
+<!--            <item>speechStateVisualizer</item> -->
+            <item>speechMarker</item>
+<!--             <item>nonSpeechDataFilter</item> -->
+<!--            <item>utteranceWavWriter</item> -->
+            <item>timePasser</item>
+        </propertylist>
+    </component>
+
+    <component name="frontend" type="edu.cmu.sphinx.frontend.FrontEnd">
+        <propertylist name="pipeline">
+              <item>pitchTracker</item>
+			 <item>streamDataSource </item>
+		      <item>dataBlocker </item>
+		      <item>speechClassifier </item>
+		      <item>speechMarker </item>
+		      <item>preemphasizer </item>
+		      <item>windower </item>
+		      <item>fft </item>
+		      <item>autoCepstrum </item>
+		      <item>liveCMN </item>
+		      <item>mfccExtraction </item>
+		      <item>featureTransform </item>
+        </propertylist>
+    </component>
+    
+    
+      <component name="autoCepstrum"
+    type="edu.cmu.sphinx.frontend.AutoCepstrum">
+    <property name="loader" value="sphinx3Loader"/>
+  </component>
+    
+      <component name="dataBlocker" type="edu.cmu.sphinx.frontend.DataBlocker"/>
+
+    <component name="microphone" type="edu.cmu.sphinx.frontend.util.Microphone">
+        <property name="closeBetweenUtterances" value="false"/>
+        <property name="bufferSize" value="960" /> <!-- 30ms -->
+    </component>
+    
+     <component name="featureTransform" type="edu.cmu.sphinx.frontend.feature.FeatureTransform">
+        <property name="loader" value="sphinx3Loader"/>
+    </component>
+    
+    <component name="streamDataSource" type="edu.cmu.sphinx.frontend.util.StreamDataSource">
+        <property name="sampleRate" value="16000"/>
+        <property name="bitsPerSample" value="16"/>
+        <property name="bytesPerRead" value="320"/> <!-- 10ms -->
+        <property name="bigEndianData" value="false"/>
+        <property name="signedData" value="true"/>
+    </component>
+ 
+    <component name="RTPDataSource" type="inpro.sphinx.frontend.RtpRecvProcessor"/>
+    
+    <component name="RsbStreamInputSource" type="inpro.sphinx.frontend.RsbStreamInputSource">
+        <property name="scope" value="/home/wardrobe/audio/in/16bit/16000Hz/LE"/>
+    </component>
+
+	<component name="dataThrottle" type="inpro.sphinx.frontend.DataThrottle">
+		<property name="speed" value="1.0"/>
+	</component>
+	
+	<component name="feMonitor" type="inpro.sphinx.frontend.Monitor" />
+
+    <component name="sessionWavWriter" type="inpro.sphinx.frontend.WavTEDLogger">
+        <property name="tedTrack" value="audio"/>
+        <property name="outFilePattern" value="/home/dsg-labuser/Desktop/hri/."/>
+    </component>
+
+    <component name="speechClassifier" type="edu.cmu.sphinx.frontend.endpoint.SpeechClassifier">
+        <property name="threshold" value="${threshold}"/>
+        <property name="debug" value="false"/> <!-- this is *very* verbose if set to true-->
+    </component>
+
+    <component name="speechStateVisualizer" type="inpro.gui.util.SpeechStateVisualizer"/>
+
+    <component name="speechMarker" type="inpro.sphinx.frontend.QuickSpeechMarker">
+        <property name="startSpeech" value="${startSpeech}"/>
+        <property name="endSilence" value="${endSilence}"/>
+        <property name="speechLeader" value="${speechLeader}"/>
+        <property name="speechTrailer" value="${speechTrailer}"/>
+    </component>
+
+    <component name="utteranceWavWriter" type="inpro.sphinx.frontend.WavTEDLogger">
+        <property name="tedTrack" value="VADutts"/>
+        <property name="outFilePattern" value="/tmp/utterance."/>
+        <property name="captureUtterances" value="true"/>
+    </component>
+
+	<component name="timePasser" type="inpro.incremental.source.OffsetAdapter">
+		<property name="casrh" value="currentASRHypothesis"/>
+	</component>
+
+    <component name="pitchTracker" 
+               type="inpro.pitch.PitchTracker"> 
+<!-- I don't see the advantage of the LookAheadPitchTracker, sorry -->
+<!--        <property name="lookAhead" value="10"/> -->
+        <property name="scoreThreshold" value="0.55"/>
+        <property name="minimumPitch" value="50"/>
+        <property name="maximumPitch" value="500"/>
+        <propertylist name="listeners">
+        	<item>pitchToTed</item>
+        	<item>baseData</item>
+<!--            <item>prosodyMonitor</item> -->
+        </propertylist>
+    </component>
+    
+    <component name="prosodyMonitor" type="inpro.pitch.notifier.ProsodyMonitor"/>
+    <component name="pitchDumper" type="inpro.features.PitchAndPowerDumper"/>
+    <component name="pitchToTed" type="inpro.pitch.notifier.TEDviewNotifier"/>
+	
+    <component name="baseDataAdapter1" type="inpro.incremental.basedata.BaseDataAdapter">
+        <property name="dataType" value="pitchedData"/>
+        <property name="baseData" value="${baseData}"/>
+    </component>
+
+    <component name="nonSpeechDataFilter" type="edu.cmu.sphinx.frontend.endpoint.NonSpeechDataFilter"/>
+    <component name="preemphasizer" type="edu.cmu.sphinx.frontend.filter.Preemphasizer"/>
+    <component name="windower" type="edu.cmu.sphinx.frontend.window.RaisedCosineWindower"/>
+    <component name="fft" type="edu.cmu.sphinx.frontend.transform.DiscreteFourierTransform"/>
+    <component name="melFilterBank" type="edu.cmu.sphinx.frontend.frequencywarp.MelFrequencyFilterBank"/>
+    <component name="baseDataAdapter2" type="inpro.incremental.basedata.BaseDataAdapter">
+        <property name="dataType" value="melData"/>
+        <property name="baseData" value="${baseData}"/>
+    </component>
+    <component name="dct" type="edu.cmu.sphinx.frontend.transform.DiscreteCosineTransform"/>
+    <component name="batchCMN" type="edu.cmu.sphinx.frontend.feature.BatchCMN"/>
+    <component name="liveCMN" type="edu.cmu.sphinx.frontend.feature.LiveCMN"/>
+    <component name="mfccExtraction" type="edu.cmu.sphinx.frontend.feature.DeltasFeatureExtractor"/>
+    <component name="frontendThread" type="inpro.sphinx.frontend.ThreadingFrontendBuffer"/>
+    <component name="dataDumper" type="edu.cmu.sphinx.frontend.util.DataDumper"/>
+

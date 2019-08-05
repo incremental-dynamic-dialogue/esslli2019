@@ -1,0 +1,106 @@
+	<property name="baseData" value="baseData" />
+    
+    <!-- 
+    
+    	ASR
+    
+     -->
+     
+     <property name="language" value="en-US"/>
+     
+     <component name="currentASRHypothesis" type="inpro.incremental.source.SphinxASR"> 
+        <property name="frontend" value="${frontend}" />
+        <property name="asrFilter" value="${deltifier}" />
+        <property name="brutalPruner" value="trivialPruner"/>
+        <property name="baseData" value="${baseData}" />
+        <propertylist name="hypChangeListeners">
+        	<item>printer</item>
+        	<item>ASRanalyzer</item>
+        </propertylist>
+    </component> 
+   
+
+	<component name="googleASR" type="inpro.incremental.source.GoogleASR">
+        <!--<property name="apiKey" value="AIzaSyAwGYGBv_fbmkbW4ghbr_iUiiylXj15-YI"/>-->
+        <property name="apiKey" value="AIzaSyDXOjOCiM7v0mznDF1AWXXoR1ehqLeIB18"/>
+        <!--<property name="apiKey" value="AIzaSyCDOkjKVuIKkMM_oic5gty7t91CWw8Y6ws"/>-->
+        <!--<property name="apiKey" value="AIzaSyAP-uZb-zQWfoYMiJdI7xk9koneoQE6ED4"/>-->
+        <!--<property name="apiKey" value="AIzaSyAGjjX-cusL8V7GZ_9H-1cHtVoWv9Naf4w"/>-->
+        <property name="samplingRate" value="16000"/>
+        <property name="lang" value="${language}"/>
+        <property name="frontend" value="${frontend}"/>
+        <propertylist name="hypChangeListeners">
+        </propertylist>
+    </component>
+    
+    <!-- 
+    
+    		ASR Support
+    		
+     -->
+     
+ 	<component name="eotFeatureAggregator" type="inpro.features.EOTFeatureAggregator">
+        <property name="pitchWindows" value="5 10 20 50"/>
+        <property name="energyWindows" value="5 10 20 50"/>
+        <property name="vEnergyWindows" value="5 10 20 50"/>
+        <property name="timeIntoAudio" value="false"/>
+        <property name="includeFrameCount" value="false"/>
+    </component>
+
+    <component name="baseData" type="inpro.incremental.basedata.BaseData">
+        <property name="eotFeatureAggregator" value="eotFeatureAggregator"/>
+    </component>
+    
+	<component name="dispatchStream" type="inpro.audio.DispatchStream">
+		<property name="sendSilence" value="true"/>
+	</component> 
+   
+	<component name="textBasedFloorTracker" type="inpro.incremental.processor.TextBasedFloorTracker" />
+   
+    <property name="deltifier" value="none" />
+    <property name="deltifierParam" value="0"/>
+    <property name="baseData" value="baseData" />
+    <component name="none" type="inpro.incremental.deltifier.ASRWordDeltifier"/>
+
+    
+        <!--
+    
+ Simple output modules
+    
+    -->
+    
+        
+	<component name="printer" type="module.PrintModule">
+        <propertylist name="hypChangeListeners">
+        </propertylist>
+    </component>
+    
+   <component name="ASRanalyzer" type="module.ASRprinter">
+         <propertylist name="hypChangeListeners">
+        </propertylist>
+    </component>
+    
+  
+    
+    <!--
+    
+     NLG + synthesis
+    
+    -->
+
+    <!--
+    <component name="Sys_Speech" type="module.opendial.DialogueDecision"> 
+	    <propertylist name="hypChangeListeners">
+ 	   	 	<item>synthesis</item> 
+	    </propertylist>
+    </component> 
+    -->
+    
+    <!--
+    <component name="synthesis" type="module.Generation">
+        <property name="dispatchStream" value="dispatchStream"/>
+        <property name="labelWriter" value="myLabelWriter"/>
+	    <propertylist name="hypChangeListeners">
+	    </propertylist>
+    </component>
+    -->
