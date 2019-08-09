@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/files-2.1/org.apache.httpcomponents/httpclient/4.3.6/4c47155e3e6c9a41a28db36680b828ced53b8af4/httpclient-4.3.6.jar" sourcepath="lib/files-2.1/org.apache.httpcomponents/httpclient/4.3.6/af4d76be0c46ee26b0d9d1d4a34d244a633cac84/httpclient-4.3.6-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/net.java.balloontip/balloontip/1.2.4.1/eb475b60f7270cd8a70e0fc5904d1efbaffc16be/balloontip-1.2.4.1.jar" sourcepath="lib/files-2.1/net.java.balloontip/balloontip/1.2.4.1/4d325e5ce43cdc27aefaef68c1b7b49b8a241c45/balloontip-1.2.4.1-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/org.json/org.json/2.0/aa0e3bef5e0c3660a3e69529a3d8b71b4ecd291a/org.json-2.0.jar"/>
@@ -12,7 +16,6 @@
 	<classpathentry kind="lib" path="lib/files-2.1/de.dfki.mary/marytts-runtime/5.2-beta2/bfc053b2fd869f2eccd8a1ddd00d7057c605a116/marytts-runtime-5.2-beta2.jar" sourcepath="lib/files-2.1/de.dfki.mary/marytts-runtime/5.2-beta2/73195fee5cde9a88eb1bed8eecb56174ad6702ed/marytts-runtime-5.2-beta2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/edu.cmu.sphinx/sphinx4-core/5prealpha-SNAPSHOT/80c487017e392c79972cebeaa3cabe517cb2014c/sphinx4-core-5prealpha-SNAPSHOT.jar" sourcepath="lib/files-2.1/edu.cmu.sphinx/sphinx4-core/5prealpha-SNAPSHOT/9acd476546f33094a4e4519eaab992404168434d/sphinx4-core-5prealpha-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/org.maltparser/maltparser/1.8.1/cd51a51a15381da1eabf733a4f4631c5ee924577/maltparser-1.8.1.jar" sourcepath="lib/files-2.1/org.maltparser/maltparser/1.8.1/6a5c4bf7213940bf779324621af3e8035f24ca76/maltparser-1.8.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/files-2.1/edu.stanford.nlp/stanford-corenlp/3.5.2/1d5d0876de963c41ebf39d1d5570972ca7b592b4/stanford-corenlp-3.5.2.jar" sourcepath="lib/files-2.1/edu.stanford.nlp/stanford-corenlp/3.5.2/a0e63b357be9bdd7939c0e433a939c48f699eabb/stanford-corenlp-3.5.2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/net.objecthunter/exp4j/0.4.7/f910cbcc730e5bd5e7699d8c14905c07c6c12d47/exp4j-0.4.7.jar" sourcepath="lib/files-2.1/net.objecthunter/exp4j/0.4.7/26e7ad8ecde8e7bb1e9d465e8a0b6ffe8dbca2ea/exp4j-0.4.7-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/jflac-1.3/5ab8e71cdf74f457521ac3de7b621c13c996639/jflac-1.3-.jar" sourcepath="lib/files-2.1/jflac-1.3/5ab8e71cdf74f457521ac3de7b621c13c996639/jflac-1.3-.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/javaFlacEncoder-0.3.1/b6f3837e1d6052821a33cb25faec203e82cee137/javaFlacEncoder-0.3.1-.jar" sourcepath="lib/files-2.1/javaFlacEncoder-0.3.1/b6f3837e1d6052821a33cb25faec203e82cee137/javaFlacEncoder-0.3.1-.jar"/>
@@ -111,5 +114,8 @@
 	<classpathentry kind="lib" path="lib/files-2.1/de.dfki.mary/marytts-common/5.2-beta2/6b0c7a1269defdd7a7cb6f412f9df335648e17a9/marytts-common-5.2-beta2.jar" sourcepath="lib/files-2.1/de.dfki.mary/marytts-common/5.2-beta2/9dd22871158dcc879221f5337509060dfb3ce3ae/marytts-common-5.2-beta2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/de.dfki.mary/marytts-signalproc/5.2-beta2/716a97641a94d8941781ae872dc1d3e7d7c32389/marytts-signalproc-5.2-beta2.jar" sourcepath="lib/files-2.1/de.dfki.mary/marytts-signalproc/5.2-beta2/8293276f6664c1d5658e0dc12844ba6a6e7c98d5/marytts-signalproc-5.2-beta2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/junit/junit/3.8.1/99129f16442844f6a4a11ae22fbbee40b14d774f/junit-3.8.1.jar" sourcepath="lib/files-2.1/junit/junit/3.8.1/525753763e53f6f76da052b316d0f2e3bfa4d73/junit-3.8.1-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/julian/git/dylan_util/lib/apache-log4j-1.2.16/log4j-1.2.16.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/dylan_util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/dsttr"/>
 	<classpathentry kind="output" path="build/classes/main"/>
 </classpath>

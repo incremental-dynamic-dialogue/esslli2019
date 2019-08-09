@@ -1,0 +1,217 @@
+john                          proper                        label_john                          male
+bill                          proper                        label_bill                          male
+mary                          proper                        label_mary                          female
+one							  proper						slot_1
+two							  proper						slot_2							
+three						  proper						slot_3
+four						  proper						slot_4
+five						  proper						slot_5
+six						      proper						slot_6
+seven						  proper						slot_7
+eight						  proper						slot_8
+nine						  proper						slot_9
+ten						      proper						slot_10
+take						  v_tran_fin_imperative         action_pick                          pres                          s2				
+grab						  v_tran_fin_imperative         action_pick                          pres                          s2				
+select						  v_tran_fin_imperative         action_pick                          pres                          s2				
+highlight					  v_tran_fin_imperative         action_pick                          pres                          s2				
+delete						  v_tran_fin_imperative         action_delete                        pres                          s2				
+move						  v_tran_fin_imperative         action_place                           pres                          s2				
+drop						  v_tran_fin_imperative         action_place                           pres                          s2				
+add							  v_tran_fin_imperative         action_place                           pres                          s2				
+addup						  v_tran_fin_imperative         action_place                           pres                          s2				
+do							  v_tran_fin_imperative         action_place                           pres                          s2				
+turn						  v_tran_fin_imperative         action_turn                          pres                          s2				
+rotate						  v_tran_fin_imperative         action_turn                          pres                          s2				
+reflect 					  v_tran_fin_imperative			action_reflect						  pres							s2
+put 						  v_ditran_fin_imperative       action_place                           pres                          s2				
+place						  v_ditran_fin_imperative       action_place                           pres                          s2				
+move 						  v_ditran_fin_imperative       action_place                           pres                          s2				
+give 						  v_ditran_fin_imperative_personal_object       action_give                          pres                          s2				
+pass 						  v_ditran_fin_imperative_personal_object       action_give                          pres                          s2
+hand 						  v_ditran_fin_imperative_personal_object       action_give                          pres                          s2				
+show 						  v_ditran_fin_imperative_personal_object       action_show                          pres                          s2				
+lies						  v_intran_fin					be_situated 				  pres							quant_1
+lie 						  v_intran_fin					be_situated 				  pres							quant_plural
+the                           det_quant                     iota
+a                             det_quant                     eps
+any                           det_quant                     eps
+another                       det_quant                     eps
+these                         det_quant                     iota
+this                          det_quant                     iota
+every						  det_quant						tau
+all							  det_quant						tau
+one							  adj_quant  				    quant_1
+two							  adj_quant   					quant_2
+three						  adj_quant   					quant_3
+which                         pron_whrel                    obj
+that                          pron_whrel                    obj
+it							  pron_nom                      quant_1                            neuter
+it							  pron_acc                      quant_1                            neuter
+me							  pron_dative                   speaker
+big                           adj                           size_big
+small                         adj                           size_small
+biggest                       adj                           size_biggest
+smallest                      adj                           size_smallest
+large                         adj                           size_big
+largest                       adj                           size_biggest
+short                         adj                           elongated_short
+long                          adj                           elongated_long
+shortest                      adj                           elongated_shortest
+longest                       adj                           elongated_longest
+red                           adj                           color_red
+yellow                        adj                           color_yellow
+green                         adj                           color_green
+other                         adj                           quant_other
+blue                          adj                           color_blue
+gray                          adj                           color_grey
+grey                          adj                           color_grey
+orange                        adj                           color_orange
+black                         adj                           color_black
+purple						  adj							color_purple
+pink						  adj							color_pink
+left 						  adj							position_left
+right						  adj							position_right
+middle   					  adj							position_center
+centre   					  adj							position_center
+center   					  adj							position_center
+upper 						  adj						    position_top
+far 						  adj						    position_top
+back 						  adj						    position_top
+bottom						  adj						    position_bottom
+near						  adj						    position_bottom
+front						  adj						    position_bottom
+first						  adj							quant_first
+second			              adj                           quant_second
+third                         adj                           quant_third
+last                          adj                           quant_third
+slanted						  adj							orientation_slanted
+object	                      count							label_object							quant_1                          obj
+objects	                      count							label_object							quant_plural                      obj
+crisps						  count							label_crisps							quant_1                      obj
+ball						  count							label_ball							quant_1                          obj
+balls						  count							label_ball							quant_plural                      obj
+box			 				  count							label_box  							quant_1                          obj
+boxes			 			  count							label_box  							quant_plural                      obj
+banana			 			  count							label_banana  						quant_1                          obj
+bananas			 			  count							label_banana  						quant_plural                      obj
+apple			 			  count							label_apple  							quant_1                          obj
+apples			 			  count							label_apple  							quant_plural                      obj
+basket			 			  count							label_basket  						quant_1                          obj
+baskets			 			  count							label_basket  						quant_plural                      obj
+block			 			  count							label_block  							quant_1                          obj
+blocks			 			  count							label_block  							quant_plural                      obj
+corner						  count							label_corner							quant_1                          obj
+corners						  count							label_corner							quant_plural                      obj
+row 						  count							label_row  							quant_1                          obj
+rows 						  count							label_row  							quant_plural                      obj
+column						  count							label_column							quant_1                          obj
+columns						  count							label_column							quant_plural                      obj
+position					  count							label_column							quant_1                          obj
+positions					  count							label_column							quant_plural                      obj
+side						  count							label_column							quant_1                          obj
+sides						  count							label_column							quant_plural                      obj
+potato			 			  count							label_potato  						quant_1                          obj
+potatoes			 		  count							label_potato  						quant_plural                      obj
+y							  count							label_y							quant_1                          obj
+crutch						  count							label_y							quant_1                          obj
+u							  count							label_u							quant_1                          obj
+c							  count							label_u							quant_1                          obj
+bridge						  count							label_u							quant_1                          obj
+v							  count							label_v							quant_1                          obj
+angle						  count							label_v							quant_1                          obj
+triangle					  count							label_v							quant_1                          obj
+f							  count							label_f 							quant_1                          obj
+pistol						  count							label_f 							quant_1                          obj
+gun						      count							label_f 							quant_1                          obj
+cross 						  count							label_x							quant_1                          obj
+plus						  count							label_x							quant_1                          obj
+x						 	  count							label_x							quant_1                          obj
+t							  count							label_t							quant_1                          obj
+mast	                      count							label_i							quant_1                          obj
+beam						  count							label_i							quant_1                          obj
+one							  count							label_i   						quant_1                          obj
+line						  count							label_i							quant_1                          obj
+lines						  count							label_i							quant_plural                      obj
+l							  count							label_l							quant_1                          obj
+seven						  count							label_l							quant_1                          obj
+z							  count							label_z							quant_1                          obj
+snake						  count							label_z							quant_1                          obj
+rifle						  count							label_n							quant_1                          obj	
+bayonett					  count							label_n							quant_1                          obj
+w							  count							label_w						quant_1                          obj
+staircase					  count							label_w						quant_1                          obj
+mobile						  count							label_p					quant_1                          obj
+p						      count							label_p					quant_1                          obj
+matrix						  count							label_gameboard 						quant_1                          obj					  
+gameboard					  count							label_gameboard 						quant_1                          obj
+board						  count							label_gameboard 						quant_1                          obj
+square						  count							label_gameboard 						quant_1                          obj
+squares						  count							label_gameboard 						quant_1                          obj
+anticlockwise				  adv							left
+clockwise					  adv							right
+vertically					  adv							vertical
+horizontally				  adv							horizontal
+once						  adv							once				  
+twice   					  adv							twice
+again    					  adv							again
+//to						      prep_mod_location_goal		to
+in							  prep_mod_location_goal		goal_into
+into						  prep_mod_location_goal		goal_into
+on							  prep_mod_location_goal		goal_onto
+top							  prep_mod_location_goal		goal_onto
+onto						  prep_mod_location_goal		goal_onto
+behind						  prep_mod_location_goal		goal_behind
+over						  prep_mod_location_goal		goal_over
+above						  prep_mod_location_goal		goal_above
+under						  prep_mod_location_goal		goal_under
+underneath					  prep_mod_location_goal		goal_under
+front						  prep_mod_location_goal		goal_front
+near						  prep_mod_location_goal		goal_near
+between 					  prep_mod_location_goal		goal_between
+inbetween 					  prep_mod_location_goal		goal_between
+beside						  prep_mod_location_goal		goal_beside
+next						  prep_mod_location_goal		goal_beside
+right						  prep_mod_location_goal		goal_right
+left                          prep_mod_location_goal		goal_left
+over						  prep_mod_location				position_rel_over
+in							  prep_mod_location				position_rel_in
+on							  prep_mod_location				position_rel_on
+top							  prep_mod_location				position_rel_on
+above						  prep_mod_location				position_rel_above
+under						  prep_mod_location				position_rel_under
+underneath					  prep_mod_location				position_rel_under
+front						  prep_mod_location				position_rel_front
+near						  prep_mod_location				position_rel_near
+between 					  prep_mod_location				position_rel_between
+inbetween 					  prep_mod_location				position_rel_between
+beside						  prep_mod_location				position_rel_beside
+next						  prep_mod_location				position_rel_beside
+right						  prep_mod_location			    position_rel_right
+left                          prep_mod_location		        position_rel_left
+right						  noun_mod_location			    position_right
+left                          noun_mod_location		        position_left
+middle						  noun_mod_location			    position_center
+center						  noun_mod_location			    position_center
+centre						  noun_mod_location			    position_center
+top						      noun_mod_location			    position_top
+back						  noun_mod_location			    position_top
+front						  noun_mod_location			    position_bottom
+bottom						  noun_mod_location			    position_bottom
+and 						  conj_entity					conj_and
+and							  conj_prop						conj_and
+andy						  conj_prop_ellipsis			conj_and
+to							  dummy_rel_goal				to
+the							  dummy_rel_goal	   			the
+of							  dummy_rel_goal				of
+in							  dummy_rel_goal				in
+on							  dummy_rel_goal				on
+slot						  dummy_prep				    slot
+box						  	  dummy_prep				    slot
+number						  dummy_prep				    number
+to							  dummy_prep					to
+the							  dummy_prep	   			    the
+of							  dummy_prep					of
+in							  dummy_prep				    in
+on							  dummy_prep				    on
+at							  dummy_prep				    at

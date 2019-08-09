@@ -1,0 +1,66 @@
+//*
+
+NEW! Domain-specific actions for speech act inference (with their parameters). 
+Can be learned from data annotated with speech acts (by parsing and generating this file.)
+
+*//
+
+//*
+
+accept-1
+IF  		¬ty(Y>Z)
+			ty(X)
+			¬</\0\/1>Ex.x
+			¬</\L>Ex.x
+			¬?+eval
+			Fo(W)
+			W << [x==that:e|e4==eq:es|p==subj(e4,x):t|x1:e|p2==right(x1):t|p3==right(p2):t|p4==obj(e4,x1):t]
+			PrevSpeaker(Y)
+THEN 		put(sa:accept(Y))
+ELSE 		abort
+
+info-1
+IF	  	¬ty(Y>Z)
+		ty(X)
+		¬</\0\/1>Ex.x
+		¬</\L>Ex.x
+		¬?+eval
+		Fo(W)
+		W << [x:e|e1==eq:es|x2:e|p2==Q(x2):t|p3==color(p2):t|p==subj(e1,x):t|p1==obj(e1,x2):t]
+		PrevSpeaker(V)
+THEN	IF		<Z>+Q
+		THEN	abort
+		ELSE	IF		<Z>+neg
+				THEN	abort
+				ELSE	put(sa:info(V,color:Q))
+ELSE	abort
+
+
+
+info-neg-1
+IF		¬ty(Y>Z)
+		ty(X)
+		¬</\0\/1>Ex.x
+		¬</\L>Ex.x
+		¬?+eval
+		<Z>+neg
+		Fo(W)
+		W << [x:e|e1==eq:es|x2:e|p2==Q(x2):t|p3==color(p2):t|p==subj(e1,x):t|p1==obj(e1,x2):t]
+		PrevSpeaker(V)
+THEN	put(sa:infoneg(V,color:Q))
+ELSE	abort
+
+polar-1
+IF		¬ty(Y>Z)
+		ty(X)
+		¬</\0\/1>Ex.x
+		¬</\L>Ex.x
+		¬?+eval
+		+Q
+		Fo(W)
+		W << [x:e|e1==eq:es|x2:e|p2==Q(x2):t|p3==color(p2):t|p==subj(e1,x):t|p1==obj(e1,x2):t]
+		PrevSpeaker(V)
+THEN	put(sa:polar(V,color:Q))
+ELSE	abort
+
+*//

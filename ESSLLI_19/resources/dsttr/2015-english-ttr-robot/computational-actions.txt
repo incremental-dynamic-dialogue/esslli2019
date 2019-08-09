@@ -1,0 +1,130 @@
+// Computational actions for English
+// as per Dynamics of Conversational Dialogue project, 2010
+
+// Rules prefixed with * are non-optional
+// Rules prefixed with + are applied repeatedly, exhausting all successful Rule Metavariable combinations
+// If a Rule is both non-optional and is to be exhaustively applied, 
+// then the + should be preceded by the *, i.e. the name should be prefixed by "*+".
+// Rule metavariables: X,Y,Z
+// Formula metavariables: A,B,C
+
+intro-pred
+IF		?ty(t)
+		¬<\/1>Ex.x
+        ¬<\/0>Ex.x
+THEN	make(\/1)
+		go(\/1)
+		put(?ty(e>t))
+		go(/\1)
+		make(\/0)
+		go(\/0)
+		put(?ty(e))
+ELSE	abort
+
+anticipation0
+IF      <\/0>Ex.?x
+THEN    go(\/0)
+ELSE    abort
+
+anticipation1	
+IF      <\/1>Ex.?x
+THEN    go(\/1)
+ELSE    abort
+
+*thinning
+IF      ?X
+        X
+THEN    delete(?X)
+ELSE    abort
+
+
+completion
+IF      ty(X)
+		¬?ty(X)
+        </\>Ex.x
+THEN    go(/\)
+ELSE    abort
+
+*elimination
+IF      ?ty(X)
+        ¬Ex.fo(x)
+        <\/1>ty(Y>X)
+        <\/0>ty(Y)
+        ¬<\/1>Ex.?x
+        ¬<\/0>Ex.?x
+THEN    beta-reduce
+ELSE    abort
+
+star-adjunction
+IF      ?ty(t)
+        ¬<\/1>Ex.x
+        ¬<\/0>Ex.x
+        ¬<\/*>Ex.x
+THEN    make(\/*)
+        go(\/*)
+        put(?ty(e))
+        put(?Ex.tn(x))
+ELSE    abort
+
+
+anticipationL
+IF		(ty(t) || ty(e>t))
+		<\/L>Ex.x
+THEN	go(\/L)		
+ELSE	abort
+
+//*
+link-adjunction
+IF      ty(e)
+        fo(X)
+        ¬<\/L>Ex.x
+THEN    put(?+eval)
+		make(\/L)
+        go(\/L)        
+        put(?ty(t))
+        put(?<\/*>fo(X))
+ELSE    abort
+*//
+
+merge
+IF      Ex.tn(x)
+		<Y>?Ex.tn(x)
+		subsumes(Y)
+		?ty(V)		
+		<Y>ty(V)		           
+THEN    merge(Y)
+		delete(?ty(V))
+		delete(?Ex.tn(x))	
+ELSE    abort
+
+//*
+*link-evaluation
+IF      ¬+evaluated
+		Ex.fo(x)
+		<\/L>Ex.x
+		<\/L>fo(X)
+THEN    conjoin(X)
+		put(+evaluated)
+		IF		</\L>Ex.x
+				</\L>+evaluated
+		THEN	go(/\L)
+				delete(+evaluated)
+		ELSE	do_nothing
+ELSE    abort
+
+*//
+
+*link-evaluation
+IF      ?+eval
+		Ex.fo(x)
+		<\/L>Ex.x
+		<\/L>fo(X)
+THEN    conjoin(X)
+		delete(?+eval)
+		IF		</\L>Ex.x
+				¬</\L>?+eval
+		THEN	go(/\L)
+				put(?+eval)
+		ELSE	do_nothing
+ELSE    abort
+
