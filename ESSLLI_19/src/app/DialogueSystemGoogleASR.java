@@ -125,7 +125,7 @@ public class DialogueSystemGoogleASR {
                             }
                         }.start();
                         
-                        Thread.sleep(10000);
+                        Thread.sleep(50000);
                         System.out.println("ASR:SHUTTING DOWN");
                      //   lastreset = System.currentTimeMillis();
                         webSpeech.shutdown(); //TODO add this back

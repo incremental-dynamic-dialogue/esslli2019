@@ -13,7 +13,7 @@ import inpro.incremental.unit.EditMessage;
 import inpro.incremental.unit.EditType;
 import inpro.incremental.unit.IU;
 import inpro.incremental.unit.WordIU;
-import iu.FrameIU;
+import iu.RobotFrameIU;
 import util.Pair;
 
 /**
@@ -24,7 +24,7 @@ import util.Pair;
  * 
  * @author jhough
  */
-public class NLU extends IUModule {
+public class NLUparserDSTTR extends IUModule {
 	
 	
 	@S4String(defaultValue = "")
@@ -32,11 +32,12 @@ public class NLU extends IUModule {
 	
 	@S4String(defaultValue = "")
 	public final static String LANGUAGE = "language";
+	
 	//public DArecognizer DA;
 	public WordUtil wordUtil;
 	
-	@S4String(defaultValue = "")
-	public final static String CLASSIFIERS = "classifiers";
+	//@S4String(defaultValue = "")
+	//public final static String CLASSIFIERS = "classifiers";
 	
 	private SemanticParser parser; //Semantic Parser
 	
@@ -52,7 +53,7 @@ public class NLU extends IUModule {
 	
 	
 	
-	protected FrameIU currentFrame; //the current frame being sent to the robot, initialized to null
+	protected RobotFrameIU currentFrame; //the current frame being sent to the robot, initialized to null
 	//protected DialogueAct currentDialogueAct; //the current dialogue act, initialized to null
 	//protected List<Pair<WordIU, String>> currentDialogueActWordStack; //the words in the current dialogue act //TODO change to all words so far?
 	protected int lastWordEndTime; //millis
@@ -118,7 +119,13 @@ public class NLU extends IUModule {
 	protected synchronized void processAddedWordIU(WordIU iu) {
 		String word = wordUtil.normalizeFromASR(iu.toPayLoad().toLowerCase());
 		//DialogueAct dact = DA.recognizeGroundingByKeyWord(word);
-		boolean successfulParse = this.parser.parseWord(word);
+		boolean successfulParse = false;
+		try {
+			successfulParse = this.parser.parseWord(word);
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage());
+			logger.info("Parse failed.");
+		}
 		if (successfulParse){
 			this.groundWordIUinParserStateIdx(iu, this.parser.state_history.size()-1);
 		}
@@ -142,15 +149,18 @@ public class NLU extends IUModule {
 	@Override
 	public void newProperties(PropertySheet ps) throws PropertyException {
 		super.newProperties(ps);
+		System.out.println(ps.getString(GRAMMAR));
+		System.out.println(ps.getString(LANGUAGE));
+		wordUtil = new WordUtil(ps.getString(LANGUAGE).split("-")[0]);
 		parser = new SemanticParser(ps.getString(GRAMMAR),true);
 		//DA = new DArecognizer(ps.getString(LANGUAGE));
-		wordUtil = new WordUtil(ps.getString(LANGUAGE));
+		
 		
 		lastWordEndTime = this.getTime();
-		currentFrame = new FrameIU("-1", "-1", 1.0);
+		currentFrame = new RobotFrameIU("-1", "-1", 1.0);
 		//currentDialogueAct = null;
 		//currentDialogueActWordStack = new ArrayList<Pair<WordIU, String>>();
-		//wordIUtoParserStateMap = new ArrayList<Pair<Integer, Integer>>();
+		wordIUtoParserStateMap = new ArrayList<Pair<Integer, Integer>>();
 		parsedWords = new ArrayList<String>();
 		//processedDialogueActs = new HashMap<Integer, DialogueAct>();
 		
@@ -160,7 +170,7 @@ public class NLU extends IUModule {
 	protected void leftBufferUpdate(Collection<? extends IU> ius,
 			List<? extends EditMessage<? extends IU>> edits) {
 		
-		ArrayList<EditMessage<FrameIU>> newEdits = new ArrayList<EditMessage<FrameIU>>();
+		ArrayList<EditMessage<RobotFrameIU>> newEdits = new ArrayList<EditMessage<RobotFrameIU>>();
 		for (EditMessage<? extends IU> edit: edits) {
 			IU iu = edit.getIU();
 			if (iu instanceof WordIU){

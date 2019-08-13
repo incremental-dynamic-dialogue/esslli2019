@@ -1,8 +1,16 @@
 package module;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WordUtil {
+	
+	public static Set<String> confirmWords;
+	public static Set<String> rejectWords;
+	public static Set<String> hesitateWords;
+	
 	
 	final static String intregex = "\\d+";
 	public static String language;
@@ -18,7 +26,7 @@ public class WordUtil {
 		"vierte", "fünfte", "sechste", "siebte", "achte",  "neunte", "zehnte", "elfte", 
 		"zwölfte"};
 	
-	private  static String[] englishunits = {"zero", "one","two","three","four","five",
+	private static String[] englishunits = {"zero", "one","two","three","four","five",
 			"six","seven","eight","nine","ten","eleven",
 			"twelve","thirteen","fourteen","","fifteen",
 			"sixteen","seventeen","eighteen", "nineteen"};
@@ -37,9 +45,43 @@ public class WordUtil {
 		case "en":
 			break;
 		default:
+			System.out.println("Error, no language for " + language);
+			break;
+		}
+		
+
+		// TODO should do this from a file
+		switch (this.language){
+		case "de":
+			confirmWords = new HashSet<String>(Arrays.asList(
+					"genau", "ja", "supi", "danke", "gut", "stimmt", "super", "korrekt", "<silentconfirm>", "richtig"));
+			rejectWords = new HashSet<String>(Arrays.asList("nein", "nee", "nichts", "falsch", "anderer", "9", "stop", "abrechen"));
+			hesitateWords = new HashSet<String>(Arrays.asList("ähm", "äh", "hm", "<sil>"));
+			break;
+		case "en":
+			confirmWords = new HashSet<String>(Arrays.asList(
+					"yeah", "yes", "super", "okay", "good", "correct", "confirm", "<silentconfirm>"));
+			rejectWords = new HashSet<String>(Arrays.asList("no", "nope", "stop", "wrong", "other", "cancel"));
+			hesitateWords = new HashSet<String>(Arrays.asList("um", "uh", "er", "hmm", "<sil>"));
+			break;
+		default:
+			System.err.println("No language for DA recognition:" + language);
 			break;
 		}
 			
+			
+	}
+	
+	public static boolean isConfirmWord(String word) {
+		return confirmWords.contains(word.toLowerCase());
+	}
+	
+	public static boolean isRejectWord(String word) {
+		return rejectWords.contains(word.toLowerCase());
+	}
+	
+	public static boolean isHesistationWord(String word) {
+		return hesitateWords.contains(word.toLowerCase());
 	}
 
 	
@@ -103,6 +145,26 @@ public class WordUtil {
 			word = convertInteger(Integer.parseInt(word));
 		}
 		return word;
+	}
+	
+	public ArrayList<String> digitsFromASR(String word){
+		ArrayList<String> wordHyps = new ArrayList<String>();
+		if (word.matches(intregex)){
+			//convert if it's a number. NB there may be ambiguity
+				for (int i=0; i<word.length();i++) {
+					wordHyps.add(convertInteger(Integer.parseInt(String.valueOf(word.charAt(i)))));
+				}
+				
+		} else {
+			for (String number : this.englishunits) {
+				if (word.equalsIgnoreCase(number)){
+					wordHyps.add(word);
+					break;
+				}
+			}
+		}
+		return wordHyps;
+		
 	}
 	
 	public static ArrayList<String> normalizeFromASRNBest(String word){
@@ -203,6 +265,7 @@ public class WordUtil {
 		System.out.println(w.convertInteger(1001));
 		System.out.println(w.convertInteger(1000099));
 		System.out.println(w.convertInteger(1100099));
+		System.out.println(w.digitsFromASR("07799851159"));
 		
 		
 		

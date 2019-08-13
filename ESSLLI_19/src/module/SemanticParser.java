@@ -41,6 +41,7 @@ public class SemanticParser {
 	public ParserGUI gui; // whether the parser is done through the display (slight delay if so, but can see what's going on)
 	
 	public SemanticParser(String grammarResource, boolean GUI){
+		System.out.println(grammarResource);
 		logger = Logger.getLogger(SemanticParser.class);
 		
 		//state_history = new ArrayList<DAG<DAGTuple, GroundableEdge>>();

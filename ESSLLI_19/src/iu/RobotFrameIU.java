@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import inpro.incremental.unit.IU;
 import semantics.GoalLocationRelation;
 
-public class FrameIU extends IU {
+public class RobotFrameIU extends IU {
 
 	private String objectID; //object ID, if present
 	private String action; //an action to take, with the object if present
@@ -24,7 +24,7 @@ public class FrameIU extends IU {
 	/**
 	 * A frame with two slots.
 	 */
-	public FrameIU(String id, String action, double conf) {
+	public RobotFrameIU(String id, String action, double conf) {
 		setObjectID(id);
 		setAction(action);
 		setRelation(null);
@@ -35,7 +35,7 @@ public class FrameIU extends IU {
 	/***
 	 * A frame with three slots.
 	 */
-	public FrameIU(String id, String action, ArrayList<String> targetpos, double conf) {
+	public RobotFrameIU(String id, String action, ArrayList<String> targetpos, double conf) {
 		setObjectID(id);
 		setAction(action);
 		setDestinationID(targetpos);
@@ -46,7 +46,7 @@ public class FrameIU extends IU {
 	/***
 	 * A frame with four slots.
 	 */
-	public FrameIU(String id, String action, GoalLocationRelation relation, ArrayList<String> targetpos, double conf) {
+	public RobotFrameIU(String id, String action, GoalLocationRelation relation, ArrayList<String> targetpos, double conf) {
 		setObjectID(id);
 		setAction(action);
 		setRelation(relation);
@@ -57,7 +57,7 @@ public class FrameIU extends IU {
 	/***
 	 * A dummy frame.
 	 */
-	public FrameIU() {
+	public RobotFrameIU() {
 		this(null, null, null, null, 0.0);
 	}
 

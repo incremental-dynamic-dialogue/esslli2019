@@ -14,30 +14,62 @@ http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.h
 Unzip the installer if needed and run the executable .exe file by clicking on it [LINUX: just run ./eclipse-inst from inside the extracted installer directory downloaded from the Eclipse site] and follow the set-up.
 Choose a workspace/use default worksapce for Eclipse.
 
-2. Get the ASR tutorial code onto your machine.
-Download ASR.zip from the sciebo folder "09-11 Practical ASR" and extract it and put it somewhere easy to access, preferably your Eclipse workspace you created/pointed to in Step 1.
+2. git clone the following two repositories from bitbucket onto your local machine:
 
-3. Import the ASR project into Eclipse:
+https://bitbucket.org/dylandialoguesystem/dsttr.git
+https://bitbucket.org/dylandialoguesystem/dylan_util.git
+
+
+
+3. i. Import the ESSLLI_19 project into Eclipse:
 a. Open up Eclipse, select File->Import->General->Existing Projects into Workspace, navigate to the directory that contains the extracted ASR folder and hit "Finish".
-In Eclipse, in your package explorer you should see the project 'ASR'.
+In Eclipse, in your package explorer you should see the project 'ESSLLI_19'.
 
-Make sure there are no errors (an error is denoted by red marks). 
+ii. Import the dsttr projects and dylan_util repos as existing projects into Eclipse in the same way.
+
+iii. Make sure there are no errors (an error is denoted by red marks). 
 You can click on the "Problems" tab to see where the problems are. Make sure all the libraries are included in the project. 
 To do that, click on Project -> Properties -> Java Build Path -> Libraries -> (select jar files in the lib folder). Do ask for help if it hasn't built automatically.
 
-4. Try Sphinx ASR from the microphone:
-Go to src/app/asrAccuracySphinx.java
+4. Try Google ASR numbers app from the microphone:
+Go to src/app/DialogueSystemGoogleASR.java
 Run -> Run As -> Java Application
-Try talking into your microphone and see what results come out from the console.
+Try talking into your microphone and see what results come out from the console. Sometimes it takes a while for the microphone to start, so wait 30 seconds before starting to speak. You can also type into the interface.
 
-5. Try Google ASR from the microphone:
-Go to src/app/asrAccuracyGoogle.java
-Run -> Run As -> Java Application
-Try talking into your microphone and see what results come out from the console.
-What are the differences between Google and Sphinx? Which has better output quality? Which is faster with results? 
-Is there anything in the type of results being given that is noticeably different?
+5. Look at src/config/iu_config.xml file. That is where the architecture is determined. Try to work out what is going on.
+You can make a simpler app by commenting out the connecting modules from the "currentASRHypothesis" module's list, i.e. set it to:
 
-6. Try feeding files to Google ASR/and or Sphinx.
+<propertylist name="hypChangeListeners">
+        	<item>printer</item>
+        	<!--<item>ASRanalyzer</item>-->
+        	<!--  <item>NLU</item>-->
+        	<!--<item>NLU</item>-->
+        	
+6. Try the Dylan parser for a simple robot domain by commenting out the NLU module as it is and uncommenting the Dylan parser NLU module. Make sure you haven't commented out the link to the NLU as in step 5:
+
+    
+   	<component name="NLU" type="module.NLUparserDSTTR">
+   	<property name="grammar" value="${grammar}"/>
+   	<property name="language" value="${language}"/>
+        <propertylist name="hypChangeListeners">
+        </propertylist>
+    </component>
+    
+      <!--  
+    <component name="NLU" type="module.NLUnumbers">
+   	<property name="grammar" value="${grammar}"/>
+   	<property name="language" value="${language}"/>
+        <propertylist name="hypChangeListeners">
+        <item>DM</item> 
+        </propertylist>
+    </component>
+	-->
+
+
+
+
+(Optional extra) 
+1. Try feeding files to Google ASR/and or Sphinx.
 For asrAccuracyGoogle.java, you can try to recognize from different files by changing the line 102 from:
 
 RecoCommandLineParser rclp = new RecoCommandLineParser(new String[] {"-M","-G", key5});
@@ -52,7 +84,7 @@ If you want to test Sphinx, there is a similar line in asrAccuracySphinx.java fi
 
 The output from this recognition is set in src/module/ASRprinter.java in the variable String FileName near the top of the file. Currently this is set to "resources/SampleAudio/increco_output_r2_sphinx", but you can name the location you would like the output to be outputted to here instead. Both recognizers currently go through this module.
 
-7. Try to analyze the errors that are made by each system. Are these due to language model errors, acoustic model errors, or a combination of both? How do the systems handle disfluencies?
+2. Try to analyze the errors that are made by each system. Are these due to language model errors, acoustic model errors, or a combination of both? How do the systems handle disfluencies?
 
 
 

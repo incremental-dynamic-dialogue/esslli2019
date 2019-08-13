@@ -7,6 +7,7 @@
      -->
      
      <property name="language" value="en-US"/>
+     <property name="grammar" value="2015-english-ttr-robot"/> <!-- name of the DS-TTR folder -->
      
      <component name="currentASRHypothesis" type="inpro.incremental.source.SphinxASR"> 
         <property name="frontend" value="${frontend}" />
@@ -15,7 +16,9 @@
         <property name="baseData" value="${baseData}" />
         <propertylist name="hypChangeListeners">
         	<item>printer</item>
-        	<item>ASRanalyzer</item>
+        	<!--<item>ASRanalyzer</item>-->
+        	<!--  <item>NLU</item>-->
+        	<item>NLU</item>
         </propertylist>
     </component> 
    
@@ -63,9 +66,9 @@
     <component name="none" type="inpro.incremental.deltifier.ASRWordDeltifier"/>
 
     
-        <!--
+   <!--
     
- Simple output modules
+ Simple modules
     
     -->
     
@@ -80,27 +83,50 @@
         </propertylist>
     </component>
     
+    
+      <!--
+    
+     NLU
+    
+    -->
+    
+    <!--  
+    
+   	<component name="NLU" type="module.NLUparserDSTTR">
+   	<property name="grammar" value="${grammar}"/>
+   	<property name="language" value="${language}"/>
+        <propertylist name="hypChangeListeners">
+        </propertylist>
+    </component>
+    
+  -->
   
+    <component name="NLU" type="module.NLUnumbers">
+   	<property name="grammar" value="${grammar}"/>
+   	<property name="language" value="${language}"/>
+        <propertylist name="hypChangeListeners">
+        <item>DM</item> 
+        </propertylist>
+    </component>
+    
+    
+   
     
     <!--
     
-     NLG + synthesis
+     DM, NLG/synthesis
     
     -->
 
-    <!--
-    <component name="Sys_Speech" type="module.opendial.DialogueDecision"> 
+	<component name="DM" type="module.DialogueManagerNumbers"> 
 	    <propertylist name="hypChangeListeners">
- 	   	 	<item>synthesis</item> 
+ 	   	 	<item>generation</item> 
 	    </propertylist>
     </component> 
-    -->
     
-    <!--
-    <component name="synthesis" type="module.Generation">
-        <property name="dispatchStream" value="dispatchStream"/>
-        <property name="labelWriter" value="myLabelWriter"/>
+    <component name="generation" type="module.Synthesizer"> 
 	    <propertylist name="hypChangeListeners">
 	    </propertylist>
-    </component>
-    -->
+    </component> 
+   
+    
