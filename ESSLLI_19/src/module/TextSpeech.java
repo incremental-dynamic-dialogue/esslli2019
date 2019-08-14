@@ -69,16 +69,17 @@ public class TextSpeech {
 	public void read(String text) {
 		
 
-	            //while (speaking == true){
-	            //	//do nothing
-	            //}
-	            this.speaking = true;
-	            Talkvoice.speak(text);
+        //while (speaking == true){
+        //	//do nothing
+        //}
+		System.out.println("Reading out:" + text);
+        this.speaking = true;
+        Talkvoice.speak(text);
 
-	            this.speaking = false;
-			   
+        this.speaking = false;
+	   
 	
-	    }
+	}
 	
 	public void deallocate() {
 

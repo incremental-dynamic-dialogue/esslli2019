@@ -35,6 +35,10 @@ To do that, click on Project -> Properties -> Java Build Path -> Libraries -> (s
 Go to src/app/DialogueSystemGoogleASR.java
 Run -> Run As -> Java Application
 Try talking into your microphone and see what results come out from the console. Sometimes it takes a while for the microphone to start, so wait 30 seconds before starting to speak. You can also type into the interface.
+If you are having problems with the ASR, you can try a simple text input system by running:
+
+src/app/DialogueSystemTypeInput.java
+
 
 5. Look at src/config/iu_config.xml file. That is where the architecture is determined. Try to work out what is going on.
 You can make a simpler app by commenting out the connecting modules from the "currentASRHypothesis" module's list, i.e. set it to:
@@ -44,6 +48,7 @@ You can make a simpler app by commenting out the connecting modules from the "cu
         	<!--<item>ASRanalyzer</item>-->
         	<!--  <item>NLU</item>-->
         	<!--<item>NLU</item>-->
+        
         	
 6. Try the Dylan parser for a simple robot domain by commenting out the NLU module as it is and uncommenting the Dylan parser NLU module. Make sure you haven't commented out the link to the NLU as in step 5:
 

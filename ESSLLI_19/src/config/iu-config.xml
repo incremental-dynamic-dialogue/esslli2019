@@ -18,7 +18,7 @@
         	<item>printer</item>
         	<!--<item>ASRanalyzer</item>-->
         	<!--  <item>NLU</item>-->
-        	<item>NLU</item>
+        	  <item>NLU</item>
         </propertylist>
     </component> 
    
@@ -90,8 +90,7 @@
     
     -->
     
-    <!--  
-    
+         <!-- 
    	<component name="NLU" type="module.NLUparserDSTTR">
    	<property name="grammar" value="${grammar}"/>
    	<property name="language" value="${language}"/>
@@ -99,8 +98,8 @@
         </propertylist>
     </component>
     
-  -->
-  
+        -->
+
     <component name="NLU" type="module.NLUnumbers">
    	<property name="grammar" value="${grammar}"/>
    	<property name="language" value="${language}"/>
@@ -108,7 +107,7 @@
         <item>DM</item> 
         </propertylist>
     </component>
-    
+  
     
    
     
