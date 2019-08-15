@@ -114,16 +114,15 @@
 	<classpathentry kind="lib" path="lib/files-2.1/de.dfki.mary/marytts-common/5.2-beta2/6b0c7a1269defdd7a7cb6f412f9df335648e17a9/marytts-common-5.2-beta2.jar" sourcepath="lib/files-2.1/de.dfki.mary/marytts-common/5.2-beta2/9dd22871158dcc879221f5337509060dfb3ce3ae/marytts-common-5.2-beta2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/de.dfki.mary/marytts-signalproc/5.2-beta2/716a97641a94d8941781ae872dc1d3e7d7c32389/marytts-signalproc-5.2-beta2.jar" sourcepath="lib/files-2.1/de.dfki.mary/marytts-signalproc/5.2-beta2/8293276f6664c1d5658e0dc12844ba6a6e7c98d5/marytts-signalproc-5.2-beta2-sources.jar"/>
 	<classpathentry kind="lib" path="lib/files-2.1/junit/junit/3.8.1/99129f16442844f6a4a11ae22fbbee40b14d774f/junit-3.8.1.jar" sourcepath="lib/files-2.1/junit/junit/3.8.1/525753763e53f6f76da052b316d0f2e3bfa4d73/junit-3.8.1-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/dylan_util/lib/apache-log4j-1.2.16/log4j-1.2.16.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/dsttr"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/freetts.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/cmu_time_awb.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/cmu_us_kal.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/cmudict04.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/cmulex.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/cmutimelex.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/en_us.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/freetts-jsapi10.jar"/>
-	<classpathentry kind="lib" path="/Users/julian/git/esslli2019/ESSLLI_19/lib/freetts-1.2/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="lib/freetts-1.2/lib/mbrola.jar"/>
 	<classpathentry kind="output" path="build/classes/main"/>
 </classpath>
