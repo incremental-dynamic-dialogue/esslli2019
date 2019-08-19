@@ -16,6 +16,7 @@ import iu.NumberIU;
 
 public class DialogueManagerNumbers extends IUModule {
 	
+	public static int numberlength = 10; // US style number 001-541-754-3010 (or 10-number option without 001 country code)
 	public ArrayList<ArrayList<NumberIU>> recordedNumbers; // all previous numbers recorded by the app
 	
 	// three different variables in terms of grounding status
@@ -49,7 +50,7 @@ public class DialogueManagerNumbers extends IUModule {
 
 
 	private void processAddedNumberIU(NumberIU iu) {
-		// US style number 001-541-754-3010
+		
 		ArrayList<EditMessage<DialogueActIU>> newDialogueActIUEdits = new ArrayList<EditMessage<DialogueActIU>>();
 		currentNumberExtensionPending.add(iu);
 		System.out.println("Current number extension pending");
@@ -57,8 +58,8 @@ public class DialogueManagerNumbers extends IUModule {
 		System.out.println("Current number confirmed");
 		System.out.println(currentNumberConfirmed);
 		
-		if (this.currentNumberExtensionPending.size()==3 & this.currentNumberConfirmed.size()<9) {
-			// after 3, 6 and 9 digits send the digits for confirmation
+		if (this.currentNumberExtensionPending.size()==3 & this.currentNumberConfirmed.size()<this.numberlength-4) {
+			// after 3, 6 and 9 etc. digits send the digits for confirmation
 			String content = "";
 			for (NumberIU number : this.currentNumberExtensionPending) {
 				content+= number.toPayLoad() + " ";
@@ -67,8 +68,8 @@ public class DialogueManagerNumbers extends IUModule {
 			newDialogueActIUEdits.add(new EditMessage<DialogueActIU>(EditType.ADD,new DialogueActIU("verify", content)));
 			//this.currentNumberExtensionPending.clear();
 			
-		} else if (this.currentNumberExtensionPending.size()==4 &this.currentNumberConfirmed.size()==9){
-			// after 13 digits, end of number tbc
+		} else if (this.currentNumberExtensionPending.size()==4 &this.currentNumberConfirmed.size()==this.numberlength-4){
+			// when 4 digits remain
 			String content = "";
 			for (NumberIU number : this.currentNumberExtensionPending) {
 				content+= number.toPayLoad() + " ";
@@ -87,7 +88,15 @@ public class DialogueManagerNumbers extends IUModule {
 		ArrayList<EditMessage<DialogueActIU>> newDialogueActIUEdits = new ArrayList<EditMessage<DialogueActIU>>();
 		// TODO Auto-generated method stub
 		if (((DialogueActIU) iu).getDialogueActType().equals("reject")){
-			currentNumberExtensionPending.clear();
+			if (this.currentNumberExtensionVocalized.isEmpty()) {
+				// self repair, we assume of last number (TODO or of last word)
+				this.currentNumberExtensionPending.remove(this.currentNumberExtensionPending.size()-1);
+			} else {
+				// number has been vocalized, so other repair of machine
+				this.currentNumberExtensionPending.clear();
+				this.currentNumberExtensionVocalized.clear();
+			}
+			
 		} else if (((DialogueActIU) iu).getDialogueActType().equals("confirm")){
 			ArrayList<NumberIU> toRemove = new ArrayList<NumberIU>();
 			for (NumberIU number : this.currentNumberExtensionPending) {
@@ -99,7 +108,7 @@ public class DialogueManagerNumbers extends IUModule {
 				this.currentNumberExtensionPending.remove(number);
 			}
 			// if it's a confirmation, go ahead
-			if (this.currentNumberConfirmed.size()==13) {
+			if (this.currentNumberConfirmed.size()==this.numberlength) {
 				String content = "okay, so that's ";
 				for (NumberIU number : this.currentNumberConfirmed) {
 					content+= number.toPayLoad() + " ";
